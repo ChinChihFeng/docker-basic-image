@@ -12,7 +12,7 @@ rm -f /lib/systemd/system/basic.target.wants/*; \
 rm -f /lib/systemd/system/anaconda.target.wants/*;
 # Install Ansible and other packages
 RUN yum -y install epel-release
-RUN yum -y install git ansible iproute sudo vim
+RUN yum -y install git ansible iproute sudo vim net-tools
 RUN yum clean all
 # Disable requiretty
 RUN sed -i -e 's/^\(Defaults\s*requiretty\)/#--- \1/'  /etc/sudoers
