@@ -1,4 +1,5 @@
 FROM centos:7
+
 # Install systemd -- See https://hub.docker.com/_/centos/
 RUN yum -y swap -- remove fakesystemd -- install systemd systemd-libs
 RUN yum -y update; yum clean all; \
@@ -10,13 +11,19 @@ rm -f /lib/systemd/system/sockets.target.wants/*udev*; \
 rm -f /lib/systemd/system/sockets.target.wants/*initctl*; \
 rm -f /lib/systemd/system/basic.target.wants/*; \
 rm -f /lib/systemd/system/anaconda.target.wants/*;
-# Install Ansible and other packages
+
+# Install main packages
 RUN yum -y install epel-release
-RUN yum -y install git ansible iproute sudo vim net-tools
+RUN yum -y install git iproute sudo vim net-tools
 RUN yum clean all
+
 # Disable requiretty
 RUN sed -i -e 's/^\(Defaults\s*requiretty\)/#--- \1/'  /etc/sudoers
-# Install Ansible inventory file
-RUN echo -e '[local]\nlocalhost ansible_connection=local' > /etc/ansible/hosts
+
+# Install Ansible and inventory file
+#RUN yum -y install ansible
+#RUN echo -e '[local]\nlocalhost ansible_connection=local' > /etc/ansible/hosts
+#RUN yum clean all
+
 VOLUME [ "/sys/fs/cgroup" ]
 CMD ["/usr/sbin/init"]

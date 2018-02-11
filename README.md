@@ -14,7 +14,7 @@ Copy the sources down -
 To run:
 
 ```
-# docker run -it -d --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro uriahfeng/docker_basic_image:latest
+# docker run -it -d --privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro uriahfeng/docker_basic_image:latest
 ```
 
 Check the that the image launched successfully
