@@ -25,5 +25,5 @@ RUN yum -y install ansible
 RUN echo -e '[local]\nlocalhost ansible_connection=local' > /etc/ansible/hosts
 RUN yum clean all
 
-VOLUME [ "/sys/fs/cgroup" ]
+VOLUME ["/sys/fs/cgroup"]
 CMD ["/usr/sbin/init"]
