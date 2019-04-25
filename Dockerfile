@@ -14,7 +14,7 @@ rm -f /lib/systemd/system/anaconda.target.wants/*;
 
 # Install main packages
 RUN yum -y install epel-release
-RUN yum -y install git iproute sudo vim net-tools
+RUN yum -y install git iproute sudo vim net-tools screen man
 RUN yum clean all
 
 # Disable requiretty
